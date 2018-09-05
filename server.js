@@ -1,4 +1,5 @@
 const express = require('express');
+const spreadSheet = require('./GoogleSheets.js').SpreadSheet;
 
 function server (SERVER_PORT) {
     const app = express()
@@ -11,6 +12,13 @@ function server (SERVER_PORT) {
     app.get('/', (req, res) => {
 
         console.log('GET /');
+        res.status(200).send("Server On");
+    });
+
+    app.get('/spreadSheet', (req, res) => {
+
+        console.log('GET /');
+        spreadSheet();
         res.status(200).send("Server On");
     });
 
