@@ -1,15 +1,5 @@
-const express = require('express');
+const server = require('./server').server;
+let SERVER_PORT = require('./config.js').SERVER_PORT;
 
-const app = express();
+server(process.env.PORT || SERVER_PORT);
 
-const server = app.listen(process.env.PORT || 5000, () => {
-    console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env);
-    console.log('Server On ', __dirname);
-});
-
-app.get('/', (req, res) => {
-
-    console.log('GET /');
-    res.status(200).send("Server On");
-
-});
