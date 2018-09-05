@@ -8,5 +8,8 @@
     "start": "node app.js"
   },
   "author": "Gawss",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
