@@ -74,6 +74,7 @@ function SpreadSheet(year, month, day, response){
     let yearColumn = 1;
     let monthColumn = 2;
     let dayColumn = 3;
+    let findDate = false;
 
     function authenticateUser(auth) {
         const sheets = google.sheets({version: 'v4', auth});
@@ -88,13 +89,21 @@ function SpreadSheet(year, month, day, response){
                     let row = rows[i];
                     if(row[yearColumn] === year && row[monthColumn] === month && row[dayColumn] === day){
                         console.log('Date found: ' +  row);
-                        response.json({
-                            fulfillmentText: "Es: " + day
-                        })
+                        findDate = true;
+
                     }
                 }
             } else {
                 console.log('No data found.');
+            }
+            if(findeDate === true){
+                response.json({
+                    fulfillmentText: "Es: " + day
+                })
+            }else{
+                response.json({
+                    fulfillmentText: "No tengo certeza"
+                })
             }
         });
     }
