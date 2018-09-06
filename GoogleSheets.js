@@ -84,6 +84,7 @@ function SpreadSheet(year, month, day, response){
         }, (err, res) => {
             if (err) return console.log('The API returned an error: ' + err);
             const rows = res.data.values;
+            
             if (rows.length) {
                 for (var i = 0; i < rows.length; i++) {
                     let row = rows[i];
@@ -96,7 +97,7 @@ function SpreadSheet(year, month, day, response){
             } else {
                 console.log('No data found.');
             }
-            if(findeDate === true){
+            if(findDate === true){
                 response.json({
                     fulfillmentText: "Es: " + day
                 })
