@@ -72,11 +72,11 @@ function SpreadSheet(year, month, day, response){
      */
 
     let dateColumn = 0;
-    let yearColumn = 1;
-    let monthColumn = 2;
-    let dayColumn = 3;
+    let numDayColumn = 1;
+    let activityColumn = 2;
     
     let findDate = false;
+    let resp = '';
 
     function authenticateUser(auth) {
         const sheets = google.sheets({version: 'v4', auth});
@@ -97,6 +97,7 @@ function SpreadSheet(year, month, day, response){
 
                     if(yearFromSheets == year && monthFromSheets == month && dayFromSheets == day){
                         console.log('Date found: ' +  row);
+                        resp = 'Número de día: ' + row[numDayColumn] + '\n' + 'Actividad: ' + row[activityColumn];
                         findDate = true;
 
                     }
@@ -106,7 +107,7 @@ function SpreadSheet(year, month, day, response){
             }
             if(findDate === true){
                 response.json({
-                    fulfillmentText: "Es: " + day
+                    fulfillmentText: resp
                 })
             }else{
                 response.json({
