@@ -44,9 +44,12 @@ function server (SERVER_PORT) {
         let dayName = getDayOfWeek(year + "-" + month + "/" + day);
 
         if(req.body.queryResult.action === 'askDay'){
-            res.json({
-                fulfillmentText: "Es: " + dayName
-              })
+
+            spreadSheet(year, month, day, res);
+
+            // res.json({
+            //     fulfillmentText: "Es: " + dayName
+            //   })
         }else{
             res.json({
                 fulfillmentText: "No brother, ni idea... :("

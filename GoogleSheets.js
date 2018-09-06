@@ -2,7 +2,7 @@ const fs = require('fs');
 const readline = require('readline');
 const {google} = require('googleapis');
 
-function SpreadSheet(){
+function SpreadSheet(year, month, day, response){
 
     // If modifying these scopes, delete token.json.
     const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
@@ -71,21 +71,27 @@ function SpreadSheet(){
      * @param {google.auth.OAuth2} auth The authenticated Google OAuth client.
      */
 
-
+    let yearColumn = 1;
+    let monthColumn = 2;
+    let dayColumn = 3;
 
     function authenticateUser(auth) {
         const sheets = google.sheets({version: 'v4', auth});
         sheets.spreadsheets.values.get({
             spreadsheetId: '1FDxpLbMYTik2akzuPX7oZ5H31MMRtqgILsEugMR_FCo',
-            range: 'A1:C',
+            range: 'A2:D',
         }, (err, res) => {
             if (err) return console.log('The API returned an error: ' + err);
             const rows = res.data.values;
             if (rows.length) {
                 for (var i = 0; i < rows.length; i++) {
                     let row = rows[i];
-                    console.log(row);
-
+                    if(row[yearColumn] === year && row[monthColumn] === month && row[dayColumn] === day){
+                        console.log('Date found: ' +  row);
+                        response.json({
+                            fulfillmentText: "Es: " + day
+                        })
+                    }
                 }
             } else {
                 console.log('No data found.');
