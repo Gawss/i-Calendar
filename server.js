@@ -37,10 +37,13 @@ function server (SERVER_PORT) {
         let date_Array = date_.split("-");
         console.log('DATE: ' + date_);
         console.log('DATE: ' + date_Array);
+        let year = date_Array[0];
+        let month = date_Array[1];
+        let day = date_Array[3].split("T")[0];
 
         if(req.body.queryResult.action === 'askDay'){
             res.json({
-                fulfillmentText: "Es: " + req.body.queryResult.parameters.date
+                fulfillmentText: "Es: " + day + "/" + month + "/" + year
               })
         }else{
             res.json({
