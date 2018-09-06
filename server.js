@@ -32,9 +32,15 @@ function server (SERVER_PORT) {
         console.log(req.body);
         console.log(req.body.queryResult.action);
         console.log(req.body.queryResult.parameters.date);
-        res.json({
-            fulfillmentText: "This is a text response"
-          })
+        if(req.body.queryResult.action === 'askDay'){
+            res.json({
+                fulfillmentText: "Es: " + req.body.queryResult.parameters.date
+              })
+        }else{
+            res.json({
+                fulfillmentText: "No brother, ni idea... :("
+              })
+        }
     });
 }
 
