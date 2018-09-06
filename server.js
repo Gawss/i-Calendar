@@ -32,6 +32,12 @@ function server (SERVER_PORT) {
         console.log(req.body);
         console.log(req.body.queryResult.action);
         console.log(req.body.queryResult.parameters.date);
+
+        let date_ = new date(req.body.queryResult.parameters.date).toISOString();
+        let date_Array = str.split("-");
+        console.log('DATE: ' + date_);
+        console.log('DATE: ' + date_Array);
+
         if(req.body.queryResult.action === 'askDay'){
             res.json({
                 fulfillmentText: "Es: " + req.body.queryResult.parameters.date
