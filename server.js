@@ -45,14 +45,11 @@ function server (SERVER_PORT) {
 
         if(req.body.queryResult.action === 'askDay'){
 
-            spreadSheet(year, month, day, res);
+            spreadSheet(year, month, day, dayName, res);
 
-            // res.json({
-            //     fulfillmentText: "Es: " + dayName
-            //   })
         }else{
             res.json({
-                fulfillmentText: "No brother, ni idea... :("
+                fulfillmentText: "No entiendo la intención de tu pregunta... :("
               })
         }
     });
@@ -60,7 +57,8 @@ function server (SERVER_PORT) {
 
 function getDayOfWeek(date) {
     var dayOfWeek = new Date(date).getDay();    
-    return isNaN(dayOfWeek) ? null : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek];
+    // return isNaN(dayOfWeek) ? null : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek];
+    return isNaN(dayOfWeek) ? null : ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'][dayOfWeek];
 }
 
 module.exports = {

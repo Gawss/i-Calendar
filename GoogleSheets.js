@@ -2,7 +2,7 @@ const fs = require('fs');
 const readline = require('readline');
 const {google} = require('googleapis');
 
-function SpreadSheet(year, month, day, response){
+function SpreadSheet(year, month, day, dayName, response){
 
     // If modifying these scopes, delete token.json.
     const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
@@ -97,7 +97,22 @@ function SpreadSheet(year, month, day, response){
 
                     if(yearFromSheets == year && monthFromSheets == month && dayFromSheets == day){
                         console.log('Date found: ' +  row);
-                        resp = 'Número de día: ' + row[numDayColumn] + '\n' + 'Actividad: ' + row[activityColumn];
+                        if(row[activityColumn] !== undefined){
+                            resp = 'Me preguntaste por un ' 
+                                    + dayName
+                                    + '\n' 
+                                    + 'El tipo de día es: ' + row[numDayColumn]
+                                    + '\n' 
+                                    + 'Y tiene las siguientes actividades: ' + row[activityColumn];
+                        }else{
+                            resp = 'Me preguntaste por un ' 
+                            + dayName
+                            + '\n' 
+                            + 'El tipo de día es: ' + row[numDayColumn]
+                            + '\n' 
+                            + 'Y no tienes actividades para ese día';
+                        }
+
                         findDate = true;
 
                     }
