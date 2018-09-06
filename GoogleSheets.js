@@ -88,7 +88,7 @@ function SpreadSheet(year, month, day, response){
             if (rows.length) {
                 for (var i = 0; i < rows.length; i++) {
                     let row = rows[i];
-                    if(row[yearColumn] === year && row[monthColumn] === month && row[dayColumn] === day){
+                    if(row[yearColumn] == year && row[monthColumn] == month && row[dayColumn] == day){
                         console.log('Date found: ' +  row);
                         findDate = true;
 
