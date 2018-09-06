@@ -103,14 +103,9 @@ function SpreadSheet(year, month, day, dayName, response){
                                     + '\n' 
                                     + 'El tipo de día es: ' + row[numDayColumn]
                                     + '\n' 
-                                    + 'Y tiene las siguientes actividades: ' + row[activityColumn];
-                        }else{
-                            resp = 'Me preguntaste por un ' 
-                            + dayName
-                            + '\n' 
-                            + 'El tipo de día es: ' + row[numDayColumn]
-                            + '\n' 
-                            + 'Y no tienes actividades para ese día';
+                                    + 'Y tiene las siguientes actividades: ' 
+                                    + '\n' 
+                                    + row[activityColumn];
                         }
 
                         findDate = true;
