@@ -30,6 +30,8 @@ function server (SERVER_PORT) {
         console.log('post /dialogFlow');
         // res.status(200).send("Server On");
         console.log(req.body);
+        console.log(req.body.queryResult.action);
+        console.log(req.body.queryResult.parameters.date);
         res.json({
             fulfillmentText: "This is a text response"
           })
