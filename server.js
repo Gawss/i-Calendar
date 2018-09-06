@@ -41,9 +41,11 @@ function server (SERVER_PORT) {
         let month = date_Array[1];
         let day = date_Array[2].split("T")[0];
 
+        let dayName = getDayOfWeek(year + "-" + month + "/" + day);
+
         if(req.body.queryResult.action === 'askDay'){
             res.json({
-                fulfillmentText: "Es: " + day + "/" + month + "/" + year
+                fulfillmentText: "Es: " + dayName
               })
         }else{
             res.json({
@@ -51,6 +53,11 @@ function server (SERVER_PORT) {
               })
         }
     });
+}
+
+function getDayOfWeek(date) {
+    var dayOfWeek = new Date(date).getDay();    
+    return isNaN(dayOfWeek) ? null : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek];
 }
 
 module.exports = {
