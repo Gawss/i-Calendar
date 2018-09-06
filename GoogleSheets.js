@@ -71,9 +71,11 @@ function SpreadSheet(year, month, day, response){
      * @param {google.auth.OAuth2} auth The authenticated Google OAuth client.
      */
 
+    let dateColumn = 0;
     let yearColumn = 1;
     let monthColumn = 2;
     let dayColumn = 3;
+    
     let findDate = false;
 
     function authenticateUser(auth) {
@@ -88,7 +90,12 @@ function SpreadSheet(year, month, day, response){
             if (rows.length) {
                 for (var i = 0; i < rows.length; i++) {
                     let row = rows[i];
-                    if(row[yearColumn] == year && row[monthColumn] == month && row[dayColumn] == day){
+                    let dateFromSheets = row[dateColumn].split("/");
+                    let dayFromSheets = dateFromSheets[0];
+                    let monthFromSheets = dateFromSheets[1];
+                    let yearFromSheets = dateFromSheets[2];
+
+                    if(yearFromSheets == year && monthFromSheets == month && dayFromSheets == day){
                         console.log('Date found: ' +  row);
                         findDate = true;
 
